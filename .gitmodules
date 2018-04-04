@@ -1,0 +1,6 @@
+[submodule "lib/tmc-admin-page-framework"]
+	path = lib/tmc-admin-page-framework
+	url = ../tmc-admin-page-framework.git
+[submodule "lib/ShellPress"]
+	path = lib/ShellPress
+	url = https://github.com/TheMasterCut/ShellPress.git
