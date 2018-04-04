@@ -26,7 +26,7 @@ class App extends ShellPress {
 		if( is_admin() && ! wp_doing_ajax() ){
 
 			App::shell()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
-			App::shell()->requireFile( '/src/tmc_apf_demo.php' );
+			App::shell()->requireFile( '/src/tmc_apf_maintenance_mode.php' );
 
 			new tmc_apf_maintenance_mode(
 				App::shell()->options->getOptionsKey(),

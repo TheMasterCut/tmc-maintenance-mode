@@ -15,8 +15,8 @@ require dirname( __FILE__ ) . '/lib/ShellPress/src/Shared/Utility/RequirementChe
 
 $requirementChecker = new ShellPress_RequirementChecker();
 
-$checkPHP   = $requirementChecker->checkPHPVersion( '5.3' );
-$checkWP    = $requirementChecker->checkWPVersion( '4.7' );
+$checkPHP   = $requirementChecker->checkPHPVersion( '5.3', 'TMC Maintenance mode requires PHP version >= 5.3' );
+$checkWP    = $requirementChecker->checkWPVersion( '4.3', 'TMC Maintenance mode requires WP version >= 4.3' );
 
 if( ! $checkPHP || ! $checkWP ) return;
 
