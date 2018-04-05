@@ -35,4 +35,10 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 
 	}
 
+	public function content( $sContent ) {
+
+		return 'aaa';
+
+	}
+
 }
