@@ -59,9 +59,6 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 				'type'              =>  'text',
 				'title'             =>  __( 'Addresses', 'tmc_mm' ),
 				'repeatable'        =>  true,
-				'attributes'        =>  array(
-					'placeholder'       =>  '255.255.255.255'
-				),
 				'before_field'      =>  sprintf( '<p>%1$s <code>%2$s</code></p><br/>',
 											__( 'Your current IP is', 'tmc_mm' ),
 											$_SERVER['REMOTE_ADDR']
