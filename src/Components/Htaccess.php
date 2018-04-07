@@ -76,16 +76,25 @@ class Htaccess {
 	 */
 	public function getStatus() {
 
-		return App::shell()->options->get( 'status', '0' );
+		return (string) App::shell()->options->get( 'status', '0' );
 
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getDifferenceStatus() {
+	public function getInvertedStatus() {
 
-		return App::shell()->options->get( '_status', '0' );
+		return (string) (int) ! (bool) $this->getStatus();
+
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getOldStatus() {
+
+		return (string) App::shell()->options->get( '_status', '0' );
 
 	}
 
@@ -119,7 +128,7 @@ class Htaccess {
 	public function _a_rewriteWatcher() {
 
 		$status     = $this->getStatus();
-		$_status    = $this->getDifferenceStatus();
+		$_status    = $this->getOldStatus();
 
 		//  Appearantly flush_rewrite_rules() works only on admin.
 

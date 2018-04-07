@@ -66,10 +66,9 @@ class Toolbar {
 
 			if( $verified ){
 
-				$newStatusAsBool    = ! (bool) App::i()->htaccess->getStatus();
-				$newStatus          = (int) $newStatusAsBool;
+				$newStatus = App::i()->htaccess->getInvertedStatus();
 
-				App::shell()->options->set( 'status', $newStatus . '' );
+				App::shell()->options->set( 'status', $newStatus );
 				App::shell()->options->flush();
 
 				App::shell()->log->info( 'Nonce verified. Set status to: ' . $newStatus );
