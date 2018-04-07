@@ -7,15 +7,24 @@ use tmc_apf_maintenance_mode;
 
 class App extends ShellPress {
 
-	/** @var Htaccess */
-	public $htaccess;
-
 	/**
 	 * Called automatically after core is ready.
 	 *
 	 * @return void
 	 */
 	protected function onSetUp() {
+
+		//  ----------------------------------------
+		//  Default settings
+		//  ----------------------------------------
+
+		App::shell()->options->setDefaultOptions( array(
+			'_status'       =>  0,
+			'status'        =>  0,
+			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
+		) );
+
+		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
 
 		//  ----------------------------------------
 		//  Autoloading
@@ -27,8 +36,7 @@ class App extends ShellPress {
 		//  Components
 		//  ----------------------------------------
 
-		$this->htaccess = new Htaccess();
-		wp_die( $this->htaccess->getContent() );
+		new Htaccess();
 
 		//  ----------------------------------------
 		//  Pages
@@ -37,7 +45,7 @@ class App extends ShellPress {
 		if( is_admin() && ! wp_doing_ajax() && ! defined( 'DOING_CRON' ) ){
 
 			App::shell()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
-			App::shell()->requireFile( '/src/tmc_apf_maintenance_mode.php' );
+			App::shell()->requireFile( '/src/AdminPages/tmc_apf_maintenance_mode.php' );
 
 			new tmc_apf_maintenance_mode(
 				App::shell()->options->getOptionsKey(),
@@ -45,6 +53,18 @@ class App extends ShellPress {
 			);
 
 		}
+
+	}
+
+	/**
+	 * Called on activate.
+	 *
+	 * @return void
+	 */
+	public function _a_loadDefaultSettings() {
+
+		App::shell()->options->fillDifferencies();
+		App::shell()->options->flush();
 
 	}
 
