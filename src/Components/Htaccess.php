@@ -100,7 +100,7 @@ class Htaccess {
 		$status     = App::shell()->options->get( 'status' );
 		$_status    = App::shell()->options->get( '_status' );
 
-		if( $status != $_status ){
+		if( $status !== $_status ){
 
 			App::shell()->options->set( '_status', $status );
 			App::shell()->options->flush();

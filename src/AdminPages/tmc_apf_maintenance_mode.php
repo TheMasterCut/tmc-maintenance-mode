@@ -25,6 +25,12 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 			)
 		);
 
+		//  ----------------------------------------
+		//  Actions
+		//  ----------------------------------------
+
+		add_filter( 'validation_' . $this->oProp->sClassName,       array( $this, '_f_toggleStatusDifference' ) );
+
 	}
 
 	public function load() {
@@ -59,7 +65,7 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 				'type'              =>  'text',
 				'title'             =>  __( 'Addresses', 'tmc_mm' ),
 				'repeatable'        =>  true,
-				'before_field'      =>  sprintf( '<p>%1$s <code>%2$s</code></p><br/>',
+				'description'       =>  sprintf( '%1$s <code>%2$s</code>',
 											__( 'Your current IP is', 'tmc_mm' ),
 											$_SERVER['REMOTE_ADDR']
 										)
@@ -80,6 +86,26 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 				'label'             =>  __( 'Update settings', 'tmc_mm' )
 			)
 		);
+
+	}
+
+	//  ================================================================================
+	//  ACTIONS
+	//  ================================================================================
+
+	/**
+	 * Called on form validation.
+	 *
+	 * @param array $newOptions
+	 * @param array $oldOptions
+	 *
+	 * @return array
+	 */
+	public function _f_toggleStatusDifference( $newOptions ) {
+
+		$newOptions['_status'] = null;
+
+		return $newOptions;
 
 	}
 
