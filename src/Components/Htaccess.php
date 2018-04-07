@@ -71,6 +71,24 @@ class Htaccess {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getStatus() {
+
+		return App::shell()->options->get( 'status', '0' );
+
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDifferenceStatus() {
+
+		return App::shell()->options->get( '_status', '0' );
+
+	}
+
+	/**
 	 * Called on mod_rewrite_rules.
 	 *
 	 * @param $string
@@ -79,7 +97,11 @@ class Htaccess {
 	 */
 	public function _f_addRules( $string ) {
 
-		if( App::shell()->options->get( 'status' ) ){
+		App::shell()->log->info( sprintf( 'Before adding rules. Status: %1$s', $this->getStatus() ) );
+
+		if( $this->getStatus() ){
+
+			App::shell()->log->info( 'Adding own rules to htaccess.' );
 
 			return $this->getAdditionalAccessRules() . $string;
 
@@ -97,13 +119,15 @@ class Htaccess {
 	 */
 	public function _a_rewriteWatcher() {
 
-		$status     = App::shell()->options->get( 'status' );
-		$_status    = App::shell()->options->get( '_status' );
+		$status     = $this->getStatus();
+		$_status    = $this->getDifferenceStatus();
 
 		if( $status !== $_status ){
 
 			App::shell()->options->set( '_status', $status );
 			App::shell()->options->flush();
+
+			App::shell()->log->info( 'Flushing mod rewrite rules.' );
 
 			flush_rewrite_rules();
 

@@ -3,9 +3,16 @@ namespace tmc\mm\src;
 
 use shellpress\v1_1_7\ShellPress;
 use tmc\mm\src\Components\Htaccess;
+use tmc\mm\src\Components\Toolbar;
 use tmc_apf_maintenance_mode;
 
 class App extends ShellPress {
+
+	/** @var Htaccess */
+	public $htaccess;
+
+	/** @var Toolbar */
+	public $toolbar;
 
 	/**
 	 * Called automatically after core is ready.
@@ -19,8 +26,8 @@ class App extends ShellPress {
 		//  ----------------------------------------
 
 		App::shell()->options->setDefaultOptions( array(
-			'_status'       =>  0,
-			'status'        =>  0,
+			'_status'       =>  '0',
+			'status'        =>  '0',
 			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
 		) );
 
@@ -36,7 +43,8 @@ class App extends ShellPress {
 		//  Components
 		//  ----------------------------------------
 
-		new Htaccess();
+		$this->htaccess = new Htaccess();
+		$this->toolbar = new Toolbar();
 
 		//  ----------------------------------------
 		//  Pages
