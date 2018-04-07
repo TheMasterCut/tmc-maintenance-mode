@@ -97,8 +97,6 @@ class Htaccess {
 	 */
 	public function _f_addRules( $string ) {
 
-		App::shell()->log->info( sprintf( 'Before adding rules. Status: %1$s', $this->getStatus() ) );
-
 		if( $this->getStatus() ){
 
 			App::shell()->log->info( 'Adding own rules to htaccess.' );
@@ -122,7 +120,9 @@ class Htaccess {
 		$status     = $this->getStatus();
 		$_status    = $this->getDifferenceStatus();
 
-		if( $status !== $_status ){
+		//  Appearantly flush_rewrite_rules() works only on admin.
+
+		if( $status !== $_status && is_admin() && did_action( 'wp_loaded' ) ){
 
 			App::shell()->options->set( '_status', $status );
 			App::shell()->options->flush();
