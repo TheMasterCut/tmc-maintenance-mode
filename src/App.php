@@ -1,12 +1,11 @@
 <?php
 namespace tmc\mm\src;
 
-use shellpress\v1_1_7\ShellPress;
+use shellpress\v1_1_8\ShellPress;
 use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Htaccess;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
-use tmc_apf_mm_infoMetabox;
 use tmc_apf_mm_page;
 
 class App extends ShellPress {
