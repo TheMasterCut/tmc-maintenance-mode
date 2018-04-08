@@ -6,7 +6,7 @@ use tmc\mm\src\App;
  * Time: 20:53
  */
 
-class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
+class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 
 	public function setUp() {
 
@@ -30,6 +30,7 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 		//  ----------------------------------------
 
 		add_filter( 'validation_' . $this->oProp->sClassName,       array( $this, '_f_toggleStatusDifference' ) );
+		add_filter( 'content_top_' . $this->oProp->sClassName,      array( $this, '_f_modifyContentTop' ) );
 
 	}
 
@@ -131,6 +132,28 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 		$newOptions['_status'] = 'lol';
 
 		return $newOptions;
+
+	}
+
+	/**
+	 * Called on content_top_*.
+	 *
+	 * @param string $html
+	 *
+	 * @return string
+	 */
+	public function _f_modifyContentTop( $html ) {
+
+		$html .= '<br/>';
+		$html .= __( 'This plugin generates static front-page file for non-whitelisted users.', 'tmc_mm' );
+		$html .= '<br/>';
+		$html .= __( 'It will work even if your WordPress breaks.', 'tmc_mm' );
+		$html .= '<p>';
+		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
+		$html .= '<br/>';
+		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
+
+		return $html;
 
 	}
 

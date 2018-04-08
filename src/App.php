@@ -6,7 +6,8 @@ use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Htaccess;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
-use tmc_apf_maintenance_mode;
+use tmc_apf_mm_infoMetabox;
+use tmc_apf_mm_page;
 
 class App extends ShellPress {
 
@@ -37,7 +38,7 @@ class App extends ShellPress {
 			'_status'       =>  '0',
 			'status'        =>  '0',
 			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
-			'message'       =>  '<h2>Private development area.</h2><p>You are not supposed to be here.</p>',
+			'message'       =>  '<h2>Site under maintenance.</h2><p>We will be back soon.</p>',
 			'pageBg'        =>  '#ECF0F1',
 			'boxBg'         =>  '#2C3E50',
 			'textColor'     =>  '#ECF0F1'
@@ -67,9 +68,9 @@ class App extends ShellPress {
 		if( is_admin() && ! wp_doing_ajax() && ! defined( 'DOING_CRON' ) ){
 
 			App::shell()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
-			App::shell()->requireFile( '/src/AdminPages/tmc_apf_maintenance_mode.php' );
+			App::shell()->requireFile( '/src/AdminPages/tmc_apf_mm_page.php' );
 
-			new tmc_apf_maintenance_mode(
+			new tmc_apf_mm_page(
 				App::shell()->options->getOptionsKey(),
 				App::shell()->getMainPluginFile()
 			);
