@@ -62,7 +62,7 @@ class Toolbar {
 
 			App::shell()->log->info( 'Clicked toggle button.' );
 
-			$verified   = (bool) wp_verify_nonce( $_GET['tmc_mm_toggle'], 'tmc_mm_toggle' );
+			$verified = (bool) wp_verify_nonce( $_GET['tmc_mm_toggle'], 'tmc_mm_toggle' );
 
 			if( $verified ){
 

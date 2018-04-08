@@ -29,6 +29,10 @@ class App extends ShellPress {
 			'_status'       =>  '0',
 			'status'        =>  '0',
 			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
+			'message'       =>  '',
+			'pageBg'        =>  '#fff',
+			'boxBg'         =>  '#ccc',
+			'textColor'     =>  '#000'
 		) );
 
 		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );

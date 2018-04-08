@@ -52,6 +52,7 @@ class Htaccess {
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-cron.php$ [NC] ';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-admin/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-content/ [NC]';
+		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-includes/ [NC]';
 		$ruleLines[] = sprintf( 'RewriteRule .* %1$s [L,NC]', ABSPATH . 'wip.php' );
 		$ruleLines[] = '</IfModule>';
 		$ruleLines[] = '# END MAINTENANCE-PAGE';
