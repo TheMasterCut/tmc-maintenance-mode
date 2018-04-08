@@ -129,6 +129,8 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 	 */
 	public function _f_toggleStatusDifference( $newOptions ) {
 
+		App::i()->front->updateTemplateFile();
+
 		$newOptions['_status'] = 'lol';
 
 		return $newOptions;

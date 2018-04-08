@@ -53,7 +53,7 @@ class Htaccess {
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-admin/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-content/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-includes/ [NC]';
-		$ruleLines[] = sprintf( 'RewriteRule .* %1$s [L,NC]', ABSPATH . 'wip.php' );
+		$ruleLines[] = sprintf( 'RewriteRule .* %1$s [L,NC]', App::i()->front->getEndpointPath() );
 		$ruleLines[] = '</IfModule>';
 		$ruleLines[] = '# END MAINTENANCE-PAGE';
 
@@ -94,7 +94,7 @@ class Htaccess {
 		$status     = App::i()->settings->getStatus();
 		$_status    = App::i()->settings->getOldStatus();
 
-		//  Appearantly flush_rewrite_rules() works only on admin.
+		//  Apparently flush_rewrite_rules() works only on admin.
 
 		if( $status !== $_status && is_admin() && did_action( 'wp_loaded' ) ){
 
