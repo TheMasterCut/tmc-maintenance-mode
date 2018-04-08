@@ -24,7 +24,7 @@ class Toolbar {
 	 */
 	public function _a_createToolbarMenu( $wpAdminBar ) {
 
-		if( App::i()->htaccess->getStatus() ){
+		if( App::i()->settings->getStatus() ){
 			$title = __( 'Click to unlock website', 'tmc_mm' );
 			$label = '<i class="dashicons dashicons-lock" style="font-family: dashicons, serif; color: #C0392B;"></i>';
 		} else {
@@ -66,9 +66,9 @@ class Toolbar {
 
 			if( $verified ){
 
-				$newStatus = App::i()->htaccess->getInvertedStatus();
+				$newStatus = App::i()->settings->getInvertedStatus();
 
-				App::shell()->options->set( 'status', $newStatus );
+				App::i()->settings->setStatus( $newStatus );
 				App::shell()->options->flush();
 
 				App::shell()->log->info( 'Nonce verified. Set status to: ' . $newStatus );

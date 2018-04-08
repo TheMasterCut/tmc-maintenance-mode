@@ -3,10 +3,14 @@ namespace tmc\mm\src;
 
 use shellpress\v1_1_7\ShellPress;
 use tmc\mm\src\Components\Htaccess;
+use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
 use tmc_apf_maintenance_mode;
 
 class App extends ShellPress {
+
+	/** @var Settings */
+	public $settings;
 
 	/** @var Htaccess */
 	public $htaccess;
@@ -30,9 +34,9 @@ class App extends ShellPress {
 			'status'        =>  '0',
 			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
 			'message'       =>  '',
-			'pageBg'        =>  '#fff',
-			'boxBg'         =>  '#ccc',
-			'textColor'     =>  '#000'
+			'pageBg'        =>  '#ECF0F1',
+			'boxBg'         =>  '#2C3E50',
+			'textColor'     =>  '#ECF0F1'
 		) );
 
 		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
@@ -47,6 +51,7 @@ class App extends ShellPress {
 		//  Components
 		//  ----------------------------------------
 
+		$this->settings = new Settings();
 		$this->htaccess = new Htaccess();
 		$this->toolbar = new Toolbar();
 

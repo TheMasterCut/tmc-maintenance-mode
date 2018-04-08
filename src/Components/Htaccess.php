@@ -40,7 +40,7 @@ class Htaccess {
 
 		//  IP Restrictions
 
-		foreach( $this->getWhitelistedAddresses() as $address ){
+		foreach( App::i()->settings->getWhitelistedAddresses() as $address ){
 
 			$ruleLines[] = 'RewriteCond %{REMOTE_ADDR} !^' . str_replace( '.', '\.', $address );
 
@@ -61,43 +61,6 @@ class Htaccess {
 
 	}
 
-	/**
-	 * Returns addresses from settings.
-	 *
-	 * @return array
-	 */
-	public function getWhitelistedAddresses() {
-
-		return (array) App::shell()->options->get( 'addresses', array() );
-
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getStatus() {
-
-		return (string) App::shell()->options->get( 'status', '0' );
-
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getInvertedStatus() {
-
-		return (string) (int) ! (bool) $this->getStatus();
-
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getOldStatus() {
-
-		return (string) App::shell()->options->get( '_status', '0' );
-
-	}
 
 	/**
 	 * Called on mod_rewrite_rules.
@@ -108,7 +71,7 @@ class Htaccess {
 	 */
 	public function _f_addRules( $string ) {
 
-		if( $this->getStatus() ){
+		if( App::i()->settings->getStatus() ){
 
 			App::shell()->log->info( 'Adding own rules to htaccess.' );
 
@@ -128,14 +91,14 @@ class Htaccess {
 	 */
 	public function _a_rewriteWatcher() {
 
-		$status     = $this->getStatus();
-		$_status    = $this->getOldStatus();
+		$status     = App::i()->settings->getStatus();
+		$_status    = App::i()->settings->getOldStatus();
 
 		//  Appearantly flush_rewrite_rules() works only on admin.
 
 		if( $status !== $_status && is_admin() && did_action( 'wp_loaded' ) ){
 
-			App::shell()->options->set( '_status', $status );
+			App::i()->settings->setOldStatus( $status );
 			App::shell()->options->flush();
 
 			App::shell()->log->info( 'Flushing mod rewrite rules.' );
