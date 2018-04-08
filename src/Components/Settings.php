@@ -70,4 +70,40 @@ class Settings {
 
 	}
 
+	/**
+	 * @return string|null
+	 */
+	public function getMessage() {
+
+		return App::shell()->options->get( 'message' );
+
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getPageBg() {
+
+		return App::shell()->options->get( 'pageBg' );
+
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getBoxBg() {
+
+		return App::shell()->options->get( 'boxBg' );
+
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getTextColor() {
+
+		return App::shell()->options->get( 'textColor' );
+
+	}
+
 }
