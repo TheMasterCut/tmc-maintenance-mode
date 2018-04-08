@@ -20,7 +20,7 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 
 		$this->addSubMenuItems(
 			array(
-				'title'         =>  'TMC Maintenance mode',
+				'title'         =>  'The real Maintenance Mode TMC',
 				'page_slug'     =>  'tmc_mm_settings',
 			)
 		);
