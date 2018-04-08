@@ -86,8 +86,7 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 				'type'              =>  'textarea',
 				'title'             =>  __( 'Message', 'tmc_mm' ),
 				'rich'              =>  array(
-					'media_buttons'     =>  false,
-					'teeny'             =>  true,
+					'editor_height'     =>  '300px'
 				)
 			),
 			array(
@@ -128,8 +127,6 @@ class tmc_apf_maintenance_mode extends TMC_v1_0_3_AdminPageFramework  {
 	 * @return array
 	 */
 	public function _f_toggleStatusDifference( $newOptions ) {
-
-		App::i()->front->updateTemplateFile();
 
 		$newOptions['_status'] = 'lol';
 

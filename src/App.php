@@ -37,7 +37,7 @@ class App extends ShellPress {
 			'_status'       =>  '0',
 			'status'        =>  '0',
 			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
-			'message'       =>  '',
+			'message'       =>  '<h2>Private development area.</h2><p>You are not supposed to be here.</p>',
 			'pageBg'        =>  '#ECF0F1',
 			'boxBg'         =>  '#2C3E50',
 			'textColor'     =>  '#ECF0F1'

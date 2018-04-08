@@ -105,6 +105,8 @@ class Htaccess {
 
 			flush_rewrite_rules();
 
+			App::i()->front->updateTemplateFile();
+
 		}
 
 	}
