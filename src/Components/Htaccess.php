@@ -42,7 +42,9 @@ class Htaccess {
 
 		foreach( App::i()->settings->getWhitelistedAddresses() as $address ){
 
-			$ruleLines[] = 'RewriteCond %{REMOTE_ADDR} !^' . str_replace( '.', '\.', $address );
+		    if( ! empty( $address ) ){
+                $ruleLines[] = 'RewriteCond %{REMOTE_ADDR} !^' . str_replace( '.', '\.', $address );
+            }
 
 		}
 
