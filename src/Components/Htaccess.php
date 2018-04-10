@@ -40,7 +40,7 @@ class Htaccess {
 
 		//  IP Restrictions
 
-		foreach( App::i()->settings->getWhitelistedAddresses() as $address ){
+		foreach( App::i()->settings->getWhitelistedIps() as $address ){
 
 		    if( ! empty( $address ) ){
                 $ruleLines[] = 'RewriteCond %{REMOTE_ADDR} !^' . str_replace( '.', '\.', $address );
@@ -55,7 +55,8 @@ class Htaccess {
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-admin/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-content/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-includes/ [NC]';
-		$ruleLines[] = sprintf( 'RewriteRule .* %1$s [L,NC]', App::i()->front->getEndpointPath() );
+		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !' . wp_login_url() . ' [NC]';
+		$ruleLines[] = 'RewriteRule .* ' . App::i()->front->getEndpointPath() . ' [L,NC]';
 		$ruleLines[] = '</IfModule>';
 		$ruleLines[] = '# END MAINTENANCE-PAGE';
 

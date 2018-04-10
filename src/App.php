@@ -34,13 +34,15 @@ class App extends ShellPress {
 		//  ----------------------------------------
 
 		App::shell()->options->setDefaultOptions( array(
-			'_status'       =>  '0',
-			'status'        =>  '0',
-			'addresses'     =>  array( $_SERVER['REMOTE_ADDR'] ),
-			'message'       =>  '<h2>Site under maintenance.</h2><p>We will be back soon.</p>',
-			'pageBg'        =>  '#ECF0F1',
-			'boxBg'         =>  '#2C3E50',
-			'textColor'     =>  '#ECF0F1'
+			'basics'        =>  array(
+				'_status'           =>  '0',
+				'status'            =>  '0',
+				'whitelistedIps'    =>  $_SERVER['REMOTE_ADDR'] . PHP_EOL . 'localhost',
+				'message'           =>  '<h2>Site under maintenance.</h2>' . PHP_EOL . '<p>We will be back soon.</p>',
+				'pageBg'            =>  '#ECF0F1',
+				'boxBg'             =>  '#2C3E50',
+				'textColor'         =>  '#ECF0F1'
+			)
 		) );
 
 		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );

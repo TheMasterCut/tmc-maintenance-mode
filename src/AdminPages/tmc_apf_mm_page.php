@@ -47,8 +47,10 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 		//  ----------------------------------------
 
 		App::shell()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/toggle-custom-field-type/ToggleCustomFieldType.php' );
+		App::shell()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/ace-custom-field-type/AceCustomFieldType.php' );
 
 		new TMC_v1_0_3_ToggleCustomFieldType();
+		new TMC_v1_0_3_AceCustomFieldType();
 
 		//  ----------------------------------------
 		//  Sections
@@ -56,8 +58,7 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 
 		$this->addSettingSections(
 			array(
-				'section_id'        =>  '_default',
-				'class'             =>  'section-grid'
+				'section_id'        =>  'basics'
 			)
 		);
 
@@ -66,6 +67,7 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 		//  ----------------------------------------
 
 		$this->addSettingFields(
+			'basics',   //  section_id
 			array(
 				'field_id'          =>  'status',
 				'type'              =>  'toggle',
@@ -73,21 +75,27 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 				'theme'             =>  'light'
 			),
 			array(
-				'field_id'          =>  'addresses',
-				'type'              =>  'text',
-				'title'             =>  __( 'Addresses', 'tmc_mm' ),
-				'repeatable'        =>  true,
-				'description'       =>  sprintf( '%1$s <code>%2$s</code>',
+				'field_id'          =>  'whitelistedIps',
+				'type'              =>  'textarea',
+				'title'             =>  __( 'Whitelisted IP\'s', 'tmc_mm' ),
+				'before_field'      =>  sprintf( '<p>%1$s <code>%2$s</code></p><br/>',
 											__( 'Your current IP is', 'tmc_mm' ),
 											$_SERVER['REMOTE_ADDR']
-										)
+										),
+				'attributes'        =>  array(
+					'rows'              =>  6
+				),
+				'description'       =>  __( 'Enter one IP address per line.', 'tmc_mm' )
 			),
 			array(
 				'field_id'          =>  'message',
-				'type'              =>  'textarea',
+				'type'              =>  'ace',
 				'title'             =>  __( 'Message', 'tmc_mm' ),
-				'rich'              =>  array(
-					'editor_height'     =>  '300px'
+				'options'           => array(
+					'language'          =>  'html',
+					'theme'             =>  'chrome',
+					'fontsize'          =>  12,
+					'gutter'            =>  false
 				)
 			),
 			array(
@@ -129,7 +137,7 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 	 */
 	public function _f_toggleStatusDifference( $newOptions ) {
 
-		$newOptions['_status'] = 'lol';
+		$newOptions['basics']['_status'] = 'lol';
 
 		return $newOptions;
 
