@@ -50,12 +50,16 @@ class Htaccess {
 
 		//  Ending
 
+        $loginUrl = str_replace( home_url(), '', wp_login_url() );
+		$loginUrl = rtrim( $loginUrl, '/' );
+		$loginUrl = '/' . ltrim( $loginUrl, '/' );
+
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-cron.php$ [NC] ';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-admin/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-content/ [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-includes/ [NC]';
-		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !' . wp_login_url() . ' [NC]';
+		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !' . $loginUrl . ' [NC]';
 		$ruleLines[] = 'RewriteRule .* ' . App::i()->front->getEndpointPath() . ' [L,NC]';
 		$ruleLines[] = '</IfModule>';
 		$ruleLines[] = '# END MAINTENANCE-PAGE';
