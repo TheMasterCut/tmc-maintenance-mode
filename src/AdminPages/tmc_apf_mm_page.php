@@ -157,9 +157,10 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 		$html .= '<br/>';
 		$html .= __( 'It will work even if your WordPress breaks.', 'tmc_mm' );
 		$html .= '<p>';
-		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
-		$html .= '<br/>';
-		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
+//		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
+//		$html .= '<br/>';
+//		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
+		$html .= '</p>';
 
 		return $html;
 
