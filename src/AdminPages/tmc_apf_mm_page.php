@@ -113,6 +113,27 @@ class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
 				'type'              =>  'color',
 				'title'             =>  __( 'Text', 'tmc_mm' )
 			),
+            array(
+                'field_id'          =>  'exportSettings',
+                'type'              =>  'export',
+                'title'             =>  'Export',
+                'file_name'         =>  'tmc-maintenance-mode-settings.txt',
+                'label'             =>  __( 'Download settings as file', 'tmc_mm' ),
+                'save'              =>  false,
+                'attributes'        =>  array(
+                    'class'             =>  'button-secondary'
+                )
+            ),
+            array(
+                'field_id'          =>  'importSettings',
+                'type'              =>  'import',
+                'title'             =>  'Import',
+                'label'             =>  __( 'Import settings', 'tmc_mm' ),
+                'save'              =>  false,
+                'attributes'        =>  array(
+                    'class'             =>  'button-secondary'
+                ),
+            ),
 			array(
 				'field_id'          =>  'submit',
 				'type'              =>  'submit',
