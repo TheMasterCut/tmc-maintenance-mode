@@ -6,7 +6,7 @@ use tmc\mm\src\App;
  * Time: 20:53
  */
 
-class tmc_apf_mm_page extends TMC_v1_0_3_AdminPageFramework  {
+class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 
 	public function setUp() {
 

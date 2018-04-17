@@ -6,7 +6,7 @@ use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Htaccess;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
-use tmc_apf_mm_page;
+use tmc_mm_apf_page;
 
 class App extends ShellPress {
 
@@ -45,6 +45,8 @@ class App extends ShellPress {
 			)
 		) );
 
+		App::shell()->options->load();
+
 		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
 
 		//  ----------------------------------------
@@ -69,9 +71,9 @@ class App extends ShellPress {
 		if( is_admin() && ! wp_doing_ajax() && ! defined( 'DOING_CRON' ) ){
 
 			App::shell()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
-			App::shell()->requireFile( '/src/AdminPages/tmc_apf_mm_page.php' );
+			App::shell()->requireFile( '/src/AdminPages/tmc_mm_apf_page.php' );
 
-			new tmc_apf_mm_page(
+			new tmc_mm_apf_page(
 				App::shell()->options->getOptionsKey(),
 				App::shell()->getMainPluginFile()
 			);
