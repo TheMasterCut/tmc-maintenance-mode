@@ -60,7 +60,7 @@ class Toolbar {
 
 		if( array_key_exists( 'tmc_mm_toggle', $_GET ) ){
 
-			App::shell()->log->info( 'Clicked toggle button.' );
+			App::s()->log->info( 'Clicked toggle button.' );
 
 			$verified = (bool) wp_verify_nonce( $_GET['tmc_mm_toggle'], 'tmc_mm_toggle' );
 
@@ -69,9 +69,9 @@ class Toolbar {
 				$newStatus = App::i()->settings->getInvertedStatus();
 
 				App::i()->settings->setStatus( $newStatus );
-				App::shell()->options->flush();
+				App::s()->options->flush();
 
-				App::shell()->log->info( 'Nonce verified. Set status to: ' . $newStatus );
+				App::s()->log->info( 'Nonce verified. Set status to: ' . $newStatus );
 
 			}
 

@@ -17,7 +17,7 @@ class Settings {
 	 */
 	public function getWhitelistedIps() {
 
-		$option = App::shell()->options->get( 'basics/whitelistedIps', '' );
+		$option = App::s()->options->get( 'basics/whitelistedIps', '' );
 
 		$array = ! empty( $option ) ? explode( PHP_EOL, $option ) : array();
 
@@ -30,7 +30,7 @@ class Settings {
 	 */
 	public function getStatus() {
 
-		return (string) App::shell()->options->get( 'basics/status', '0' );
+		return (string) App::s()->options->get( 'basics/status', '0' );
 
 	}
 
@@ -41,7 +41,7 @@ class Settings {
 	 */
 	public function setStatus( $status ) {
 
-		App::shell()->options->set( 'basics/status', $status );
+		App::s()->options->set( 'basics/status', $status );
 
 	}
 
@@ -59,7 +59,7 @@ class Settings {
 	 */
 	public function getOldStatus() {
 
-		return (string) App::shell()->options->get( 'basics/_status', '0' );
+		return (string) App::s()->options->get( 'basics/_status', '0' );
 
 	}
 
@@ -70,7 +70,7 @@ class Settings {
 	 */
 	public function setOldStatus( $status ) {
 
-		App::shell()->options->set( 'basics/_status', $status );
+		App::s()->options->set( 'basics/_status', $status );
 
 	}
 
@@ -79,7 +79,7 @@ class Settings {
 	 */
 	public function getMessage() {
 
-		return App::shell()->options->get( 'basics/message' );
+		return App::s()->options->get( 'basics/message' );
 
 	}
 
@@ -88,7 +88,7 @@ class Settings {
 	 */
 	public function getPageBg() {
 
-		return App::shell()->options->get( 'basics/pageBg' );
+		return App::s()->options->get( 'basics/pageBg' );
 
 	}
 
@@ -97,7 +97,7 @@ class Settings {
 	 */
 	public function getBoxBg() {
 
-		return App::shell()->options->get( 'basics/boxBg' );
+		return App::s()->options->get( 'basics/boxBg' );
 
 	}
 
@@ -106,7 +106,7 @@ class Settings {
 	 */
 	public function getTextColor() {
 
-		return App::shell()->options->get( 'basics/textColor' );
+		return App::s()->options->get( 'basics/textColor' );
 
 	}
 

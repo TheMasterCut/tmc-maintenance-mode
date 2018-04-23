@@ -33,7 +33,7 @@ class App extends ShellPress {
 		//  Default settings
 		//  ----------------------------------------
 
-		App::shell()->options->setDefaultOptions( array(
+		App::s()->options->setDefaultOptions( array(
 			'basics'        =>  array(
 				'_status'           =>  '0',
 				'status'            =>  '0',
@@ -45,15 +45,15 @@ class App extends ShellPress {
 			)
 		) );
 
-		App::shell()->options->load();
+		App::s()->options->load();
 
-		App::shell()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
+		App::s()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
 
 		//  ----------------------------------------
 		//  Autoloading
 		//  ----------------------------------------
 
-		App::shell()->autoloading->addNamespace( 'tmc\mm', dirname( App::shell()->getMainPluginFile() ) );
+		App::s()->autoloading->addNamespace( 'tmc\mm', dirname( App::s()->getMainPluginFile() ) );
 
 		//  ----------------------------------------
 		//  Components
@@ -70,12 +70,12 @@ class App extends ShellPress {
 
 		if( is_admin() && ! wp_doing_ajax() && ! defined( 'DOING_CRON' ) ){
 
-			App::shell()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
-			App::shell()->requireFile( '/src/AdminPages/tmc_mm_apf_page.php' );
+			App::s()->requireFile( '/lib/tmc-admin-page-framework/admin-page-framework.php', 'TMC_v1_0_3_AdminPageFramework' );
+			App::s()->requireFile( '/src/AdminPages/tmc_mm_apf_page.php' );
 
 			new tmc_mm_apf_page(
-				App::shell()->options->getOptionsKey(),
-				App::shell()->getMainPluginFile()
+				App::s()->options->getOptionsKey(),
+				App::s()->getMainPluginFile()
 			);
 
 		}
@@ -89,8 +89,8 @@ class App extends ShellPress {
 	 */
 	public function _a_loadDefaultSettings() {
 
-		App::shell()->options->fillDifferencies();
-		App::shell()->options->flush();
+		App::s()->options->fillDifferencies();
+		App::s()->options->flush();
 
 	}
 

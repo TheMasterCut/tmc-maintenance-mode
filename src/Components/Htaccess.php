@@ -80,7 +80,7 @@ class Htaccess {
 
 		if( App::i()->settings->getStatus() ){
 
-			App::shell()->log->info( 'Adding own rules to htaccess.' );
+			App::s()->log->info( 'Adding own rules to htaccess.' );
 
 			return $this->getAdditionalAccessRules() . $string;
 
@@ -106,9 +106,9 @@ class Htaccess {
 		if( $status !== $_status && is_admin() && did_action( 'wp_loaded' ) ){
 
 			App::i()->settings->setOldStatus( $status );
-			App::shell()->options->flush();
+			App::s()->options->flush();
 
-			App::shell()->log->info( 'Flushing mod rewrite rules.' );
+			App::s()->log->info( 'Flushing mod rewrite rules.' );
 
 			flush_rewrite_rules();
 

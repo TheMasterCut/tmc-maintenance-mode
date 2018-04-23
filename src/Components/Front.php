@@ -162,7 +162,7 @@ class Front {
 	 */
 	public function getEndpointPath() {
 
-		return App::shell()->getPath( '/src/Templates/index.php' );
+		return App::s()->getPath( '/src/Templates/index.php' );
 
 	}
 
@@ -173,7 +173,7 @@ class Front {
 	 */
 	public function getTemplatePath() {
 
-		return App::shell()->getPath( '/src/Templates/template.html' );
+		return App::s()->getPath( '/src/Templates/template.html' );
 
 	}
 

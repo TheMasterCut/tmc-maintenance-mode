@@ -40,14 +40,14 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 		//  Styles
 		//  ----------------------------------------
 
-		$this->enqueueStyle( App::shell()->getUrl( '/lib/ShellPress/assets/css/AdminPage/style.css' ), '', '', array( 'version' => App::shell()->getFullPluginVersion() ) );
+		$this->enqueueStyle( App::s()->getUrl( '/lib/ShellPress/assets/css/AdminPage/style.css' ), '', '', array( 'version' => App::s()->getFullPluginVersion() ) );
 
 		//  ----------------------------------------
 		//  Custom field types
 		//  ----------------------------------------
 
-		App::shell()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/toggle-custom-field-type/ToggleCustomFieldType.php' );
-		App::shell()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/ace-custom-field-type/AceCustomFieldType.php' );
+		App::s()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/toggle-custom-field-type/ToggleCustomFieldType.php' );
+		App::s()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/ace-custom-field-type/AceCustomFieldType.php' );
 
 		new TMC_v1_0_3_ToggleCustomFieldType();
 		new TMC_v1_0_3_AceCustomFieldType();
