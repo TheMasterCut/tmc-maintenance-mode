@@ -24,6 +24,8 @@ class Toolbar {
 	 */
 	public function _a_createToolbarMenu( $wpAdminBar ) {
 
+	    if( ! current_user_can( 'manage_options' ) ) return;
+
 		if( App::i()->settings->getStatus() ){
 			$title = __( 'Click to unlock website', 'tmc_mm' );
 			$label = '<i class="dashicons dashicons-lock" style="font-family: dashicons, serif; color: #C0392B;"></i>';
@@ -32,7 +34,7 @@ class Toolbar {
 			$label = '<i class="dashicons dashicons-unlock" style="font-family: dashicons, serif;"></i>';
 		}
 
-		//  If not in admin area, redirect to settings pagr
+		//  If not in admin area, redirect to settings page
 
 		$url = is_admin() ? $_SERVER['REQUEST_URI'] : admin_url( 'options-general.php?page=tmc_mm_settings' );
 		$url = wp_nonce_url( $url, 'tmc_mm_toggle', 'tmc_mm_toggle' );
@@ -60,6 +62,10 @@ class Toolbar {
 
 		if( array_key_exists( 'tmc_mm_toggle', $_GET ) ){
 
+		    if( ! current_user_can( 'manage_options' ) ){
+		        wp_die( __( 'Sorry but you don\'t have permission to toggle maintenance mode.', 'tmc_mm' ) );
+            }
+
 			App::s()->log->info( 'Clicked toggle button.' );
 
 			$verified = (bool) wp_verify_nonce( $_GET['tmc_mm_toggle'], 'tmc_mm_toggle' );
@@ -70,8 +76,6 @@ class Toolbar {
 
 				App::i()->settings->setStatus( $newStatus );
 				App::s()->options->flush();
-
-				App::s()->log->info( 'Nonce verified. Set status to: ' . $newStatus );
 
 			}
 
