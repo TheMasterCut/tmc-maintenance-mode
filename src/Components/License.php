@@ -18,7 +18,7 @@ class License extends LicenseManagerSLM {
      */
     protected function onSetUp() {
 
-        $this->registerAPFForm( 'tmc_mm_settings', 'tools', 'license' );
+        $this->registerAPFForm( 'tmc_mm_apf_page', 'tmc_mm_settings', 'tools', 'license' );
         $this->registerNotices();
         $this->registerAutomaticChecker();
 
