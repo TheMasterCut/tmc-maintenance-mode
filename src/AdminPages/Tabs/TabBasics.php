@@ -8,6 +8,7 @@ namespace tmc\mm\src\AdminPages\Tabs;
  */
 
 use shellpress\v1_2_1\src\Shared\AdminPageFramework\AdminPageTab;
+use tmc\mm\src\App;
 
 class TabBasics extends AdminPageTab {
 
@@ -104,6 +105,40 @@ class TabBasics extends AdminPageTab {
             )
         );
 
+	    //  ----------------------------------------
+	    //  Filters
+	    //  ----------------------------------------
+
+	    add_filter( 'fields_' . $this->pageFactoryClassName,    array( $this, '_f_modifyFields' ) );
+
     }
+
+    //  ================================================================================
+    //  FILTERS
+    //  ================================================================================
+
+	/**
+	 * Called on fields_{factoryClassName}.
+	 * Modifies fields based on licensing.
+	 *
+	 * @param array $fields
+	 *
+	 * @return mixed
+	 */
+	public function _f_modifyFields( $fields ) {
+
+		if( ! App::i()->license->isActive() ){
+
+			$fields['basics']['status']['attributes']['disabled'] = 'disabled';
+			$fields['basics']['status']['before_field'] =
+				sprintf( '<p style="color: red;">%1$s</p><br/>',
+					__( 'You need to enter your license in order to activate or deactivate lock-down.', 'tmc_mm' )
+				);
+
+		}
+
+    	return $fields;
+
+	}
 
 }

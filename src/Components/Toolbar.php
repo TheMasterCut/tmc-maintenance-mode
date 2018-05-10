@@ -66,10 +66,14 @@ class Toolbar extends IComponent {
 	 */
 	public function _a_toggleStatusFromUrlCallback() {
 
-		if( array_key_exists( 'tmc_mm_toggle', $_GET ) ){
+		if( isset( $_GET['tmc_mm_toggle'] ) ){
 
 		    if( ! current_user_can( 'manage_options' ) ){
 		        wp_die( __( 'Sorry but you don\'t have permission to toggle maintenance mode.', 'tmc_mm' ) );
+            }
+
+            if( ! App::i()->license->isActive() ){
+	            wp_die( __( 'It looks like your license is not active.', 'tmc_mm' ) );
             }
 
 			App::s()->log->info( 'Clicked toggle button.' );
