@@ -2,7 +2,7 @@
 /**
  * Plugin Name: The real Maintenance Mode TMC
  * Description: Modifies your .htaccess file to redirect all non-whitelisted IP's to static page. Works even if your page is broken.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Plugin URI:  https://themastercut.co
  * Author:      TheMasterCut.co
  * License:     GPL-2.0+
