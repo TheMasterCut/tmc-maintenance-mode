@@ -21,6 +21,10 @@ class License extends LicenseManagerSLM {
      */
     protected function onSetUp() {
 
+        $this->addFormToAPF( 'tmc_mm_apf_page', 'license', 'tmc_mm_settings', 'tools' );
+
+        //  TODO - MOVE ALL THINGS FROM HERE TO LicenseManagerSLM.php
+
         //  ----------------------------------------
         //  Actions
         //  ----------------------------------------
