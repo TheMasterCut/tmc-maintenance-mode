@@ -4,6 +4,7 @@ namespace tmc\mm\src;
 use shellpress\v1_2_1\ShellPress;
 use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Htaccess;
+use tmc\mm\src\Components\License;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
 use tmc_mm_apf_page;
@@ -21,6 +22,9 @@ class App extends ShellPress {
 
 	/** @var Front */
 	public $front;
+
+	/** @var License */
+	public $license;
 
 	/**
 	 * Called automatically after core is ready.
@@ -59,10 +63,11 @@ class App extends ShellPress {
 		//  Components
 		//  ----------------------------------------
 
-		$this->settings = new Settings();
-		$this->htaccess = new Htaccess();
-		$this->toolbar = new Toolbar();
-		$this->front = new Front();
+		$this->settings = new Settings( $this );
+		$this->license = new License( $this );
+		$this->htaccess = new Htaccess( $this );
+		$this->toolbar = new Toolbar( $this );
+		$this->front = new Front( $this );
 
 		//  ----------------------------------------
 		//  Pages

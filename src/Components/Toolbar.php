@@ -6,18 +6,24 @@ namespace tmc\mm\src\Components;
  * Time: 19:50
  */
 
+use shellpress\v1_2_1\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 use WP_Admin_Bar;
 
-class Toolbar {
+class Toolbar extends IComponent {
 
-	public function __construct() {
+    /**
+     * Called on creation of component.
+     *
+     * @return void
+     */
+    protected function onSetUp() {
 
-		add_action( 'admin_bar_menu',   array( $this, '_a_createToolbarMenu' ), 1000 );
+        add_action( 'admin_bar_menu',   array( $this, '_a_createToolbarMenu' ), 1000 );
 
-		add_action( 'init',             array( $this, '_a_toggleStatusFromUrlCallback' ) );
+        add_action( 'init',             array( $this, '_a_toggleStatusFromUrlCallback' ) );
 
-	}
+    }
 
 	/**
 	 * @param WP_Admin_Bar $wpAdminBar

@@ -6,23 +6,29 @@ namespace tmc\mm\src\Components;
  * Time: 18:10
  */
 
+use shellpress\v1_2_1\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
-class Htaccess {
+class Htaccess extends IComponent {
 
-	public function __construct() {
+    /**
+     * Called on creation of component.
+     *
+     * @return void
+     */
+    protected function onSetUp() {
 
-		//  ----------------------------------------
-		//  Actions
-		//  ----------------------------------------
+        //  ----------------------------------------
+        //  Actions
+        //  ----------------------------------------
 
-		//  Add rewrite rules only, if maintenance mode is enabled
+        //  Add rewrite rules only, if maintenance mode is enabled
 
-		add_filter( 'mod_rewrite_rules',        array( $this, '_f_addRules' ), 100 );
+        add_filter( 'mod_rewrite_rules',        array( $this, '_f_addRules' ), 100 );
 
-		add_action( 'shutdown',                 array( $this, '_a_rewriteWatcher' ) );
+        add_action( 'shutdown',                 array( $this, '_a_rewriteWatcher' ) );
 
-	}
+    }
 
 	/**
 	 * Prepares whole string of rules for further .htaccess insertion.

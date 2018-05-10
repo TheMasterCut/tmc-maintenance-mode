@@ -1,4 +1,7 @@
 <?php
+
+use tmc\mm\src\AdminPages\Tabs\TabBasics;
+use tmc\mm\src\AdminPages\Tabs\TabTools;
 use tmc\mm\src\App;
 
 /**
@@ -53,99 +56,16 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 		new TMC_v1_0_3_AceCustomFieldType();
 
 		//  ----------------------------------------
-		//  Sections
+		//  Tabs
 		//  ----------------------------------------
 
-		$this->addSettingSections(
-			array(
-				'section_id'        =>  'basics'
-			)
-		);
-
-		//  ----------------------------------------
-		//  Fields
-		//  ----------------------------------------
-
-		$this->addSettingFields(
-			'basics',   //  section_id
-			array(
-				'field_id'          =>  'status',
-				'type'              =>  'toggle',
-				'title'             =>  __( 'Status', 'tmc_mm' ),
-				'theme'             =>  'light'
-			),
-			array(
-				'field_id'          =>  'whitelistedIps',
-				'type'              =>  'textarea',
-				'title'             =>  __( 'Whitelisted IP\'s', 'tmc_mm' ),
-				'before_field'      =>  sprintf( '<p>%1$s <code>%2$s</code></p><br/>',
-											__( 'Your current IP is', 'tmc_mm' ),
-											$_SERVER['REMOTE_ADDR']
-										),
-				'attributes'        =>  array(
-					'rows'              =>  6
-				),
-				'description'       =>  __( 'Enter one IP address per line.', 'tmc_mm' )
-			),
-			array(
-				'field_id'          =>  'message',
-				'type'              =>  'ace',
-				'title'             =>  __( 'Message', 'tmc_mm' ),
-				'options'           => array(
-					'language'          =>  'html',
-					'theme'             =>  'chrome',
-					'fontsize'          =>  12,
-					'gutter'            =>  false
-				)
-			),
-			array(
-				'field_id'          =>  'pageBg',
-				'type'              =>  'color',
-				'title'             =>  __( 'Background', 'tmc_mm' )
-			),
-			array(
-				'field_id'          =>  'boxBg',
-				'type'              =>  'color',
-				'title'             =>  __( 'Box', 'tmc_mm' )
-			),
-			array(
-				'field_id'          =>  'textColor',
-				'type'              =>  'color',
-				'title'             =>  __( 'Text', 'tmc_mm' )
-			),
-            array(
-                'field_id'          =>  'exportSettings',
-                'type'              =>  'export',
-                'title'             =>  'Export',
-                'file_name'         =>  'tmc-maintenance-mode-settings.txt',
-                'label'             =>  __( 'Download settings as file', 'tmc_mm' ),
-                'save'              =>  false,
-                'attributes'        =>  array(
-                    'class'             =>  'button-secondary'
-                )
-            ),
-            array(
-                'field_id'          =>  'importSettings',
-                'type'              =>  'import',
-                'title'             =>  'Import',
-                'label'             =>  __( 'Import settings', 'tmc_mm' ),
-                'save'              =>  false,
-                'attributes'        =>  array(
-                    'class'             =>  'button-secondary'
-                ),
-            ),
-			array(
-				'field_id'          =>  'submit',
-				'type'              =>  'submit',
-				'save'              =>  false,
-				'label'             =>  __( 'Update settings', 'tmc_mm' )
-			)
-		);
+        new TabBasics( $this, 'tmc_mm_settings', 'basics' );
+        new TabTools( $this, 'tmc_mm_settings', 'tools' );
 
 	}
 
 	//  ================================================================================
-	//  ACTIONS
+	//  FILTERS
 	//  ================================================================================
 
 	/**
@@ -158,7 +78,7 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 	 */
 	public function _f_toggleStatusDifference( $newOptions ) {
 
-		$newOptions['basics']['_status'] = 'lol';
+		$newOptions['basics']['_status'] = '';
 
 		return $newOptions;
 
@@ -178,9 +98,9 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 		$html .= '<br/>';
 		$html .= __( 'It will work even if your WordPress breaks.', 'tmc_mm' );
 		$html .= '<p>';
-//		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
-//		$html .= '<br/>';
-//		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
+		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
+		$html .= '<br/>';
+		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
 		$html .= '</p>';
 
 		return $html;

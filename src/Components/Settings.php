@@ -6,9 +6,19 @@ namespace tmc\mm\src\Components;
  * Time: 02:31
  */
 
+use shellpress\v1_2_1\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
-class Settings {
+class Settings extends IComponent {
+
+    /**
+     * Called on creation of component.
+     *
+     * @return void
+     */
+    protected function onSetUp() {
+        // TODO: Implement onSetUp() method.
+    }
 
 	/**
 	 * Returns addresses from settings.
