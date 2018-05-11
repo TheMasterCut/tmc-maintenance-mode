@@ -130,20 +130,13 @@ class Settings extends IComponent {
     }
 
     /**
-     * @return string|null
+     * Returns multiple arrays with keys 'login' and 'password'.
+     *
+     * @return array
      */
-    public function getLogin() {
+    public function getCredentials() {
 
-	    return App::s()->options->get( 'basics/whitelistedLogin' );
-
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPass() {
-
-        return App::s()->options->get( 'basics/whitelistedPass' );
+	    return App::s()->options->get( 'basics/credentials', array() );
 
     }
 

@@ -35,7 +35,7 @@ class Apache extends IComponent {
 	 *
 	 * @return string
 	 */
-	protected function getAdditionalAccessRules() {
+	protected function getAdditionalWhiteListRules() {
 
 		//  Beginning of rules
 
@@ -67,12 +67,92 @@ class Apache extends IComponent {
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !/wp-includes.* [NC]';
 		$ruleLines[] = 'RewriteCond %{REQUEST_URI} !' . $loginUrl . '.* [NC]';
 		$ruleLines[] = 'RewriteRule .* ' . App::i()->front->getEndpointPath() . ' [L,NC]';
+
 		$ruleLines[] = '</IfModule>';
 		$ruleLines[] = '# END MAINTENANCE-PAGE';
 
 		return PHP_EOL . implode( PHP_EOL, $ruleLines ) . PHP_EOL;
 
 	}
+
+    /**
+     * Prepares whole string of rules for further .htaccess insertion.
+     *
+     * @return string
+     */
+    protected function getAdditionalCredentialsRules() {
+
+        //  Beginning of rules
+
+        $ruleLines = array();
+        $ruleLines[] = '# BEGIN MAINTENANCE-PAGE';
+
+        $ruleLines[] = 'AuthName "Lock-down enabled"';
+        $ruleLines[] = 'AuthType Basic';
+        $ruleLines[] = 'AuthUserFile .htpasswd';
+        $ruleLines[] = 'Require valid-user';
+        $ruleLines[] = 'ErrorDocument 401 ' . App::i()->front->getEndpointPath();
+
+        $ruleLines[] = '# END MAINTENANCE-PAGE';
+
+        return PHP_EOL . implode( PHP_EOL, $ruleLines ) . PHP_EOL;
+
+    }
+
+    /**
+     * Creates .htpasswd file and fills with credentials.
+     *
+     * @return bool
+     */
+    protected function generatePasswordsFile() {
+
+        $lines = array();
+
+        //  ----------------------------------------
+        //  Prepare lines
+        //  ----------------------------------------
+
+        foreach( App::i()->settings->getCredentials() as $credentials ){
+
+            $login  = isset( $credentials['login'] ) ? $credentials['login'] : null;
+            $pass   = isset( $credentials['password'] ) ? $credentials['password'] : null;
+
+            if( $login && $pass ){
+
+                $lines[] = $credentials['login'] . ':' . crypt( $credentials['password'], base64_encode( $credentials['password'] ) );
+
+            }
+
+        }
+
+        //  ----------------------------------------
+        //  Process
+        //  ----------------------------------------
+
+        if( empty( $lines ) ){
+
+            //  Lines are empty! Don't create a file.
+
+            App::s()->log->info( 'Did not create .htpasswd file, because lines were empty.' );
+            return false;
+
+        } else {
+
+            //  Ok, we got some lines. Create file.
+
+            $result = file_put_contents( ABSPATH . '/.htpasswd', implode( PHP_EOL, $lines ) );
+
+            if( $result ){
+                App::s()->log->info( 'Successfully added credentials to .htpasswd.' );
+                return true;
+            } else {
+                App::s()->log->info( 'Could not add cre .htpasswd.' );
+                return false;
+            }
+
+        }
+
+    }
 
 
 	/**
@@ -86,15 +166,39 @@ class Apache extends IComponent {
 
 		if( App::i()->settings->getStatus() ){
 
-			App::s()->log->info( 'Adding own rules to htaccess.' );
+            App::s()->log->info( 'Adding own rules to htaccess.' );
 
-			return $this->getAdditionalAccessRules() . $string;
+		    switch( App::i()->settings->getTypeOfLockDown() ){
 
-		} else {
+                case 'whitelist':
 
-			return $string;
+                    return $this->getAdditionalWhiteListRules() . $string;
+
+                    break;
+
+                case 'password':
+
+                    if( $this->generatePasswordsFile() ){
+                        return $this->getAdditionalCredentialsRules() . $string;
+                    } else {
+                        return $string;
+                    }
+
+                    break;
+
+                default:
+
+                    return $string;
+
+                    break;
+
+            }
 
 		}
+
+		//  Nothing changed.
+
+        return $string;
 
 	}
 

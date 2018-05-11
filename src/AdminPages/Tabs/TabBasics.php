@@ -64,7 +64,7 @@ class TabBasics extends AdminPageTab {
                 ),
                 'reveals'           =>  array(
                     'whitelist'         =>  '#fieldrow-basics_whitelistedIps',
-                    'password'          =>  '#fieldrow-basics_whitelistedLogin, #fieldrow-basics_whitelistedPass'
+                    'password'          =>  '#fieldrow-basics_credentials'
                 ),
                 'default'           =>  'whitelist'
             ),

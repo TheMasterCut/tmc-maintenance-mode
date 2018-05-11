@@ -41,6 +41,8 @@ class App extends ShellPress {
 			'basics'        =>  array(
 				'_status'           =>  '0',
 				'status'            =>  '0',
+				'lockDownType'      =>  'whitelist',
+				'credentials'       =>  array(),
 				'whitelistedIps'    =>  $_SERVER['REMOTE_ADDR'] . PHP_EOL . 'localhost',
 				'message'           =>  '<h2>Site under maintenance.</h2>' . PHP_EOL . '<p>We will be back soon.</p>',
 				'pageBg'            =>  '#ECF0F1',
