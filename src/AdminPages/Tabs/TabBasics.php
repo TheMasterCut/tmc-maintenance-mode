@@ -55,6 +55,20 @@ class TabBasics extends AdminPageTab {
                 'theme'             =>  'light'
             ),
             array(
+                'field_id'          =>  'lockDownType',
+                'type'              =>  'radioreveal',
+                'title'             =>  __( 'Type of lock-down', 'tmc_mm' ),
+                'label'             =>  array(
+                    'whitelist'         =>  __( 'Whitelist', 'tmc_mm' ),
+                    'password'          =>  __( 'Password', 'tmc_mm' )
+                ),
+                'reveals'           =>  array(
+                    'whitelist'         =>  '#fieldrow-basics_whitelistedIps',
+                    'password'          =>  '#fieldrow-basics_whitelistedLogin, #fieldrow-basics_whitelistedPass'
+                ),
+                'default'           =>  'whitelist'
+            ),
+            array(
                 'field_id'          =>  'whitelistedIps',
                 'type'              =>  'textarea',
                 'title'             =>  __( 'Whitelisted IP\'s', 'tmc_mm' ),
@@ -65,6 +79,34 @@ class TabBasics extends AdminPageTab {
                 ),
                 'attributes'        =>  array(
                     'rows'              =>  6
+                )
+            ),
+            array(
+                'field_id'          =>  'credentials',
+                'type'              =>  'inline_mixed',
+                'title'             =>  __( 'Credentials', 'tmc_mm' ),
+                'tip'               =>  __( 'You can insert multiple credentials.', 'tmc_mm' ),
+                'repeatable'        =>  true,
+                'attributes'        =>  array(
+                    'fieldset'          =>  array(
+                        'style'             =>  'max-width: 400px;'
+                    )
+                ),
+                'content'           =>  array(
+                    array(
+                        'field_id'      =>  'login',
+                        'type'          =>  'text',
+                        'attributes'    =>  array(
+                            'placeholder'   =>  __( 'login', 'tmc_mm' )
+                        )
+                    ),
+                    array(
+                        'field_id'      =>  'password',
+                        'type'          =>  'text',
+                        'attributes'    =>  array(
+                            'placeholder'   =>  __( 'password', 'tmc_mm' )
+                        )
+                    )
                 )
             ),
             array(

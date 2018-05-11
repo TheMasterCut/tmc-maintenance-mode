@@ -120,4 +120,31 @@ class Settings extends IComponent {
 
 	}
 
+    /**
+     * @return string|null
+     */
+	public function getTypeOfLockDown() {
+
+	    return App::s()->options->get( 'basics/lockDownType', 'whitelist' );
+
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLogin() {
+
+	    return App::s()->options->get( 'basics/whitelistedLogin' );
+
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPass() {
+
+        return App::s()->options->get( 'basics/whitelistedPass' );
+
+    }
+
 }

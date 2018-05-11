@@ -52,9 +52,11 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 
 		App::s()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/toggle-custom-field-type/ToggleCustomFieldType.php' );
 		App::s()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/ace-custom-field-type/AceCustomFieldType.php' );
+		App::s()->requireFile( 'lib/tmc-admin-page-framework/custom-field-types/radio-reveal-field-type/RadioRevealFieldType.php' );
 
 		new TMC_v1_0_3_ToggleCustomFieldType();
 		new TMC_v1_0_3_AceCustomFieldType();
+		new TMC_v1_0_3_RadioRevealFieldType();
 
 		//  ----------------------------------------
 		//  Tabs

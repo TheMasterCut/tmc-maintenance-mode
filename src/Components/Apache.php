@@ -9,7 +9,7 @@ namespace tmc\mm\src\Components;
 use shellpress\v1_2_1\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
-class Htaccess extends IComponent {
+class Apache extends IComponent {
 
     /**
      * Called on creation of component.

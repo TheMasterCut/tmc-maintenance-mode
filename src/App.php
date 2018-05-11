@@ -3,7 +3,7 @@ namespace tmc\mm\src;
 
 use shellpress\v1_2_1\ShellPress;
 use tmc\mm\src\Components\Front;
-use tmc\mm\src\Components\Htaccess;
+use tmc\mm\src\Components\Apache;
 use tmc\mm\src\Components\License;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
@@ -14,8 +14,8 @@ class App extends ShellPress {
 	/** @var Settings */
 	public $settings;
 
-	/** @var Htaccess */
-	public $htaccess;
+	/** @var Apache */
+	public $apache;
 
 	/** @var Toolbar */
 	public $toolbar;
@@ -64,10 +64,10 @@ class App extends ShellPress {
 		//  ----------------------------------------
 
 		$this->settings = new Settings( $this );
-		$this->license = new License( $this );
-		$this->htaccess = new Htaccess( $this );
-		$this->toolbar = new Toolbar( $this );
-		$this->front = new Front( $this );
+		$this->license  = new License( $this );
+		$this->apache   = new Apache( $this );
+		$this->toolbar  = new Toolbar( $this );
+		$this->front    = new Front( $this );
 
 		//  ----------------------------------------
 		//  Pages
