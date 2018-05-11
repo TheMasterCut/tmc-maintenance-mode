@@ -20,10 +20,11 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 		$this->oProp->bShowDebugInfo = false;
 
 		$this->setRootMenuPage( 'Settings' );
+		$this->setPageTitleVisibility( false );
 
 		$this->addSubMenuItems(
 			array(
-				'title'         =>  'The real Maintenance Mode TMC',
+				'title'         =>  'The Real Maintenance Mode TMC',
 				'page_slug'     =>  'tmc_mm_settings',
 			)
 		);
@@ -93,17 +94,19 @@ class tmc_mm_apf_page extends TMC_v1_0_3_AdminPageFramework  {
 	 */
 	public function _f_modifyContentTop( $html ) {
 
-		$html .= '<br/>';
-		$html .= __( 'This plugin generates static front-page file for non-whitelisted users.', 'tmc_mm' );
-		$html .= '<br/>';
-		$html .= __( 'It will work even if your WordPress breaks.', 'tmc_mm' );
-		$html .= '<p>';
-		$html .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
-		$html .= '<br/>';
-		$html .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
-		$html .= '</p>';
+	    $headHtml = '';
+	    $headHtml .= sprintf( '<h1>%1$s</h1>', __( 'The Real Maintenance Mode TMC', 'tmc_mm' ) );
+		$headHtml .= '<br/>';
+		$headHtml .= __( 'This plugin generates static front-page file for non-whitelisted users.', 'tmc_mm' );
+		$headHtml .= '<br/>';
+		$headHtml .= __( 'It will work even if your WordPress breaks.', 'tmc_mm' );
+		$headHtml .= '<p>';
+		$headHtml .= sprintf( '<i>%1$s</i> %2$s', __( 'Wow! This is pretty fucking cool!', 'tmc_mm' ), __( '- Said little Tommy.', 'tmc_mm' ) );
+		$headHtml .= '<br/>';
+		$headHtml .= __( 'Now you can test your broken shit and nobody will notice!', 'tmc_mm' );
+		$headHtml .= '</p>';
 
-		return $html;
+		return $headHtml . $html;
 
 	}
 

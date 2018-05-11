@@ -131,8 +131,9 @@ class TabBasics extends AdminPageTab {
 
 			$fields['basics']['status']['attributes']['disabled'] = 'disabled';
 			$fields['basics']['status']['before_field'] =
-				sprintf( '<p style="color: red;">%1$s</p><br/>',
-					__( 'You need to enter your license in order to activate or deactivate lock-down.', 'tmc_mm' )
+				sprintf( '<a href="%1$s" style="color: red;">%2$s</a><br/>',
+					admin_url( 'options-general.php?page=tmc_mm_settings&tab=tools' ),
+					__( 'You need to enter license in order to activate or deactivate lock-down.', 'tmc_mm' )
 				);
 
 		}
