@@ -7,6 +7,7 @@ use tmc\mm\src\Components\Apache;
 use tmc\mm\src\Components\License;
 use tmc\mm\src\Components\Settings;
 use tmc\mm\src\Components\Toolbar;
+use tmc\mm\src\Components\Update;
 use tmc_mm_apf_page;
 
 class App extends ShellPress {
@@ -25,6 +26,9 @@ class App extends ShellPress {
 
 	/** @var License */
 	public $license;
+
+	/** @var Update */
+	public $update;
 
 	/**
 	 * Called automatically after core is ready.
@@ -70,6 +74,7 @@ class App extends ShellPress {
 		$this->apache   = new Apache( $this );
 		$this->toolbar  = new Toolbar( $this );
 		$this->front    = new Front( $this );
+		$this->update   = new Update( $this );
 
 		//  ----------------------------------------
 		//  Pages
