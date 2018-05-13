@@ -99,6 +99,21 @@ class Front extends IComponent {
 	}
 
 	/**
+	 * Returns relative path to file which will be displayed.
+     * Returned string does not have slash in the beginning.
+	 *
+	 * @return string
+	 */
+	public function getRelativeEndpointPath() {
+
+		$absPath = $this->getEndpointPath();
+		$relPath = str_replace( ABSPATH, '', $absPath );
+
+		return ltrim( $relPath, '/' );
+
+	}
+
+	/**
 	 * Returns absolute path to file which will be included into display.
 	 *
 	 * @return string

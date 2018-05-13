@@ -91,7 +91,7 @@ class Apache extends IComponent {
         $ruleLines[] = 'AuthType Basic';
         $ruleLines[] = 'AuthUserFile .htpasswd';
         $ruleLines[] = 'Require valid-user';
-        $ruleLines[] = 'ErrorDocument 401 ' . App::i()->front->getEndpointPath();
+        $ruleLines[] = 'ErrorDocument 401 /' . App::i()->front->getRelativeEndpointPath();
 
         $ruleLines[] = '# END MAINTENANCE-PAGE';
 
