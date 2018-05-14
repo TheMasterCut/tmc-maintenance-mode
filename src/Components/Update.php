@@ -18,7 +18,7 @@ class Update extends CustomUpdater {
 	 */
 	protected function onSetUp() {
 
-		$this->setUpdateSource( 'https://themastercut.co/packages/tmc-maintenance-mode/version.json' );
+		$this->setUpdateSource( 'http://download.themastercut.co/packages' );
 
 		if( ! App::i()->license->isActive() ){
             $this->disableUpdatePackage();
