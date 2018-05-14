@@ -7,6 +7,7 @@ namespace tmc\mm\src\Components;
  */
 
 use shellpress\v1_2_1\src\Shared\Components\CustomUpdater;
+use tmc\mm\src\App;
 
 class Update extends CustomUpdater {
 
@@ -18,6 +19,10 @@ class Update extends CustomUpdater {
 	protected function onSetUp() {
 
 		$this->setUpdateSource( 'https://themastercut.co/packages/tmc-maintenance-mode/version.json' );
+
+		if( ! App::i()->license->isActive() ){
+            $this->disableUpdatePackage();
+        }
 
 	}
 
