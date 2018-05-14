@@ -17,7 +17,7 @@ class Update extends CustomUpdater {
 	 */
 	protected function onSetUp() {
 
-		$this->setUpdateSource( 'https://themastercut.co' );
+		$this->setUpdateSource( 'https://themastercut.co/packages/tmc-maintenance-mode/version.json' );
 
 	}
 
