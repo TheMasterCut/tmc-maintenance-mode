@@ -6,7 +6,7 @@ namespace tmc\mm\src\Components;
  * Time: 18:40
  */
 
-use shellpress\v1_2_1\src\Shared\Components\IComponent;
+use shellpress\v1_2_2\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
 class Front extends IComponent {

@@ -6,7 +6,7 @@ namespace tmc\mm\src\Components;
  * Time: 21:49
  */
 
-use shellpress\v1_2_1\src\Shared\Components\CustomUpdater;
+use shellpress\v1_2_2\src\Shared\Components\CustomUpdater;
 use tmc\mm\src\App;
 
 class Update extends CustomUpdater {
