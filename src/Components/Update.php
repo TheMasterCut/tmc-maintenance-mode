@@ -18,7 +18,7 @@ class Update extends IComponent {
 	 */
 	protected function onSetUp() {
 
-		$this::s()->update->setFeedSource( 'https://github.com/TheMasterCut/tmc-maintenance-mode/updates.json' );
+		$this::s()->update->setFeedSource( 'https://raw.githubusercontent.com/TheMasterCut/tmc-maintenance-mode/master/updates.json' );
 
 		if( ! App::i()->license->isActive() ){
 			$this::s()->update->disableUpdateOfPackage();
