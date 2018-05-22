@@ -1,0 +1,11 @@
+{
+  "id": 			"tmc-maintenance-mode/tmc-maintenance-mode.php",
+  "slug": 			"tmc-maintenance-mode",
+  "plugin": 		"tmc-maintenance-mode/tmc-maintenance-mode.php",
+  "new_version": 	"1.0.7",
+  "url": 			"https://themastercut.co",
+  "package": 		"https://github.com/TheMasterCut/tmc-maintenance-mode/archive/1.0.7.zip",
+  "icons": 			[],
+  "tested":			"4.9.5",
+  "requires_php":	false
+}
