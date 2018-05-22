@@ -27,9 +27,6 @@ class App extends ShellPress {
 	/** @var License */
 	public $license;
 
-	/** @var Update */
-	public $update;
-
 	/**
 	 * Called automatically after core is ready.
 	 *

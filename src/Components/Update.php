@@ -6,10 +6,10 @@ namespace tmc\mm\src\Components;
  * Time: 21:49
  */
 
-use shellpress\v1_2_2\src\Shared\Components\CustomUpdater;
+use shellpress\v1_2_2\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
-class Update extends CustomUpdater {
+class Update extends IComponent {
 
 	/**
 	 * Called on creation of component.
@@ -18,11 +18,11 @@ class Update extends CustomUpdater {
 	 */
 	protected function onSetUp() {
 
-		$this->setUpdateSource( 'http://download.themastercut.co/packages' );
+		$this::s()->update->setFeedSource( 'http://download.themastercut.co/packages' );
 
 		if( ! App::i()->license->isActive() ){
-            $this->disableUpdatePackage();
-        }
+			$this::s()->update->disableUpdateOfPackage();
+		}
 
 	}
 
