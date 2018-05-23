@@ -1,7 +1,7 @@
 <?php
 namespace tmc\mm\src;
 
-use shellpress\v1_2_2\ShellPress;
+use shellpress\v1_2_3\ShellPress;
 use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Apache;
 use tmc\mm\src\Components\License;
