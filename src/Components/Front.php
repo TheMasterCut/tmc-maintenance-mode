@@ -36,11 +36,9 @@ class Front extends IComponent {
 			)
 		);
 
-		$html = file_get_contents( $this::s()->getPath( 'src/Templates/template.mustache' ) );
-
 		//  Render data into template
 
-		return $this::s()->mustache->render( $html, $data );
+		return $this::s()->mustache->render( 'src/Templates/template.mustache', $data );
 
 	}
 
