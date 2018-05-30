@@ -2,7 +2,7 @@
 /**
  * Plugin Name: The Real Maintenance Mode TMC
  * Description: Modifies your .htaccess file to redirect all non-whitelisted IP's to static page. Works even if your page is broken.
- * Version:     1.0.7
+ * Version:     1.0.8
  * Plugin URI:  https://themastercut.co
  * Author:      TheMasterCut.co
  * License:     GPL-2.0+
@@ -44,4 +44,4 @@ use tmc\mm\src\App;
 require_once( __DIR__ . '/lib/ShellPress/ShellPress.php' );
 require_once( __DIR__ . '/src/App.php' );
 
-App::initShellPress( __FILE__, 'tmc_mm', '1.0.7' );   //  <--- Remember to always change version here
+App::initShellPress( __FILE__, 'tmc_mm', '1.0.8' );   //  <--- Remember to always change version here

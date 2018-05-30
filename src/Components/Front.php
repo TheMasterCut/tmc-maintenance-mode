@@ -16,63 +16,31 @@ class Front extends IComponent {
      *
      * @return void
      */
-    protected function onSetUp() {
-        // TODO: Implement onSetUp() method.
-    }
+    protected function onSetUp() {}
 
 	/**
 	 * @return string
 	 */
 	public function getHtml() {
 
-		ob_start();
-		?>
+		//  Prepare some data
 
-		<!DOCTYPE html>
-		<html lang="pl">
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+		$data = array(
+			'page'      =>  array(
+				'bgColor'   =>  App::i()->settings->getPageBg(),
+			),
+			'box'       =>  array(
+				'bgColor'   =>  App::i()->settings->getBoxBg(),
+				'textColor' =>  App::i()->settings->getTextColor(),
+				'message'   =>  apply_filters( 'the_content', App::i()->settings->getMessage() )
+			)
+		);
 
-			<style>
+		$html = file_get_contents( $this::s()->getPath( 'src/Templates/template.mustache' ) );
 
-				body {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					min-height: 100vh;
-					letter-spacing: 0.1em;
-					background-color: <?php echo App::i()->settings->getPageBg(); ?>;
-				}
+		//  Render data into template
 
-				.box {
-					max-width: 500px;
-					width: 100%;
-					background: <?php echo App::i()->settings->getBoxBg(); ?>;
-					color: <?php echo App::i()->settings->getTextColor(); ?>;
-					padding: 40px;
-					margin: auto;
-				}
-
-			</style>
-		</head>
-		<body>
-
-		<div class="wrapper">
-			<div class="box">
-
-				<?php echo apply_filters( 'the_content', App::i()->settings->getMessage() ); ?>
-
-			</div>
-		</div>
-
-		</body>
-		</html>
-
-		<?php
-
-		return ob_get_clean();
+		return $this::s()->mustache->render( $html, $data );
 
 	}
 
