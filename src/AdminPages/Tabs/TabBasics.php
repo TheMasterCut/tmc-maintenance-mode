@@ -59,8 +59,14 @@ class TabBasics extends AdminPageTab {
                 'type'              =>  'radioreveal',
                 'title'             =>  __( 'Type of lock-down', 'tmc_mm' ),
                 'label'             =>  array(
-                    'whitelist'         =>  __( 'Whitelist', 'tmc_mm' ),
-                    'password'          =>  __( 'Password', 'tmc_mm' )
+                    'whitelist'         =>  sprintf( '%1$s <br/><small style="color: gray;">%2$s</small>',
+	                                            __( 'Whitelist', 'tmc_mm' ),
+	                                            __( 'Locks only front-end', 'tmc_mm' )
+                                            ),
+                    'password'          =>  sprintf( '%1$s <br/><small style="color: gray;">%2$s</small>',
+							                    __( 'Password', 'tmc_mm' ),
+							                    __( 'Locks whole site', 'tmc_mm' )
+						                    ),
                 ),
                 'reveals'           =>  array(
                     'whitelist'         =>  '#fieldrow-basics_whitelistedIps',

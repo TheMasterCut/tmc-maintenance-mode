@@ -89,7 +89,7 @@ class Apache extends IComponent {
 
         $ruleLines[] = 'AuthName "Lock-down enabled"';
         $ruleLines[] = 'AuthType Basic';
-        $ruleLines[] = 'AuthUserFile .htpasswd';
+        $ruleLines[] = 'AuthUserFile ' . trailingslashit( ABSPATH ) . '.htpasswd';
         $ruleLines[] = 'Require valid-user';
         $ruleLines[] = 'ErrorDocument 401 /' . App::i()->front->getRelativeEndpointPath();
 
