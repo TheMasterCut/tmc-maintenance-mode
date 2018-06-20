@@ -60,7 +60,7 @@ class Front extends IComponent {
 	 */
 	public function getEndpointPath() {
 
-		return App::s()->getPath( '/src/Templates/index.php' );
+		return trailingslashit( ABSPATH ) . '401.php';
 
 	}
 
@@ -76,17 +76,6 @@ class Front extends IComponent {
 		$relPath = str_replace( ABSPATH, '', $absPath );
 
 		return ltrim( $relPath, '/' );
-
-	}
-
-	/**
-	 * Returns absolute path to file which will be included into display.
-	 *
-	 * @return string
-	 */
-	public function getTemplatePath() {
-
-		return App::s()->getPath( '/src/Templates/template.html' );
 
 	}
 

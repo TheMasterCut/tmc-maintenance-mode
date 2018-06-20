@@ -2,9 +2,9 @@
   "id": 			"tmc-maintenance-mode/tmc-maintenance-mode.php",
   "slug": 			"tmc-maintenance-mode",
   "plugin": 		"tmc-maintenance-mode/tmc-maintenance-mode.php",
-  "new_version": 	"1.1.0",
+  "new_version": 	"1.1.1",
   "url": 			"https://themastercut.co",
-  "package": 		"https://github.com/TheMasterCut/tmc-maintenance-mode/releases/download/1.1.0/tmc-maintenance-mode.zip",
+  "package": 		"https://github.com/TheMasterCut/tmc-maintenance-mode/releases/download/1.1.1/tmc-maintenance-mode.zip",
   "icons": 			[],
   "tested":			"4.9.6",
   "requires_php":	false

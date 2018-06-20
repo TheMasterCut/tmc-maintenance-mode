@@ -140,7 +140,7 @@ class Apache extends IComponent {
 
             //  Ok, we got some lines. Create file.
 
-            $result = file_put_contents( ABSPATH . '/.htpasswd', implode( PHP_EOL, $lines ) );
+            $result = file_put_contents( trailingslashit( ABSPATH ) . '.htpasswd', implode( PHP_EOL, $lines ) );
 
             if( $result ){
                 App::s()->log->info( 'Successfully added credentials to .htpasswd.' );
