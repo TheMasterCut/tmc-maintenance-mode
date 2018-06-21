@@ -8,6 +8,7 @@ namespace tmc\mm\src\AdminPages\Tabs;
  */
 
 use shellpress\v1_2_3\src\Shared\AdminPageFramework\AdminPageTab;
+use tmc\mm\src\App;
 
 class TabTools extends AdminPageTab {
 
@@ -20,7 +21,7 @@ class TabTools extends AdminPageTab {
             array(
                 'title'         =>  __( 'Tools', 'tmc_mm' ),
                 'page_slug'     =>  $this->pageSlug,
-                'tab_slug'      =>  $this->tabSlug
+                'tab_slug'      =>  $this->tabSlug,
             )
         );
 
@@ -37,17 +38,49 @@ class TabTools extends AdminPageTab {
 
         $this->pageFactory->addSettingSections(
             array(
-                'section_id'        =>  'multisite',
-                'page_slug'         =>  $this->pageSlug,
-                'tab_slug'          =>  $this->tabSlug,
-                'order'             =>  5,
-                'title'             =>  __( 'Multisite', 'tmc_mm' )
-            )
+            	'section_id'        =>  'dbExport',
+	            'page_slug'         =>  $this->pageSlug,
+	            'tab_slug'          =>  $this->tabSlug,
+	            'order'             =>  5,
+	            'title'             =>  __( 'Database export', 'tmc_mm' )
+            ),
+	        array(
+		        'section_id'        =>  'multisite',
+		        'page_slug'         =>  $this->pageSlug,
+		        'tab_slug'          =>  $this->tabSlug,
+		        'order'             =>  10,
+		        'title'             =>  __( 'Multisite', 'tmc_mm' )
+	        )
         );
 
         //  ----------------------------------------
         //  Fields
         //  ----------------------------------------
+
+	    $this->pageFactory->addSettingFields(
+	    	'dbExport',
+		    array(
+		    	'field_id'              =>  'tablesNames',
+			    'type'                  =>  'checkbox',
+			    'title'                 =>  __( 'Tables to export', 'tmc_mm' ),
+			    'label'                 =>  $this->getTablesNamesAsLabelForField(),
+			    'select_all_button'     =>  __( 'Select all', 'tmc_mm' ),
+			    'select_none_button'    =>  __( 'Select none', 'tmc_mm' ),
+			    'attributes'            =>  array(
+			    	'field'                 =>  array(
+			    		'style'                 =>  'max-height: 200px; overflow: auto;'
+				    )
+			    )
+		    ),
+		    array(
+				'field_id'              =>  'exportDatabase',
+			    'type'                  =>  'submit',
+			    'value'                 =>  __( 'Download tables', 'tmc_mm' ),
+			    'attributes'            =>  array(
+			    	'class'                 =>  'button-secondary'
+			    )
+		    )
+	    );
 
         $this->pageFactory->addSettingFields(
             'multisite',
@@ -73,6 +106,24 @@ class TabTools extends AdminPageTab {
                 ),
             )
         );
+
+    }
+
+	/**
+	 * Returns array of name => name.
+	 *
+	 * @return string[]
+	 */
+    private function getTablesNamesAsLabelForField() {
+
+	    $names = App::i()->dbExporter->getAllTablesNames();
+
+	    $results = array();
+	    foreach( $names as $name ){
+		    $results[$name] = $name;
+	    }
+
+	    return $results;
 
     }
 

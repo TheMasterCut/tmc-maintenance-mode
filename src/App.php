@@ -2,6 +2,7 @@
 namespace tmc\mm\src;
 
 use shellpress\v1_2_3\ShellPress;
+use tmc\mm\src\Components\DbExporter;
 use tmc\mm\src\Components\Front;
 use tmc\mm\src\Components\Apache;
 use tmc\mm\src\Components\License;
@@ -26,6 +27,9 @@ class App extends ShellPress {
 
 	/** @var License */
 	public $license;
+
+	/** @var DbExporter */
+	public $dbExporter;
 
 	/**
 	 * Called automatically after core is ready.
@@ -66,12 +70,13 @@ class App extends ShellPress {
 		//  Components
 		//  ----------------------------------------
 
-		$this->settings = new Settings( $this );
-		$this->license  = new License( $this );
-		$this->apache   = new Apache( $this );
-		$this->toolbar  = new Toolbar( $this );
-		$this->front    = new Front( $this );
-		$this->update   = new Update( $this );
+		$this->settings   = new Settings( $this );
+		$this->license    = new License( $this );
+		$this->apache     = new Apache( $this );
+		$this->toolbar    = new Toolbar( $this );
+		$this->front      = new Front( $this );
+		$this->update     = new Update( $this );
+		$this->dbExporter = new DbExporter( $this );
 
 		//  ----------------------------------------
 		//  Pages
