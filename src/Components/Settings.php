@@ -17,8 +17,42 @@ class Settings extends IComponent {
      * @return void
      */
     protected function onSetUp() {
-        // TODO: Implement onSetUp() method.
+
+    	//  ----------------------------------------
+    	//  Default settings
+    	//  ----------------------------------------
+
+	    App::s()->options->setDefaultOptions( array(
+		    'basics'        =>  array(
+			    '_status'           =>  '0',
+			    'status'            =>  '0',
+			    'lockDownType'      =>  'whitelist',
+			    'credentials'       =>  array(),
+			    'whitelistedIps'    =>  $_SERVER['REMOTE_ADDR'] . PHP_EOL . 'localhost',
+			    'message'           =>  '<h2>Site under maintenance.</h2>' . PHP_EOL . '<p>We will be back soon.</p>',
+			    'pageBg'            =>  '#ECF0F1',
+			    'boxBg'             =>  '#2C3E50',
+			    'textColor'         =>  '#ECF0F1',
+		    )
+	    ) );
+
+	    App::s()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
+
     }
+
+	/**
+	 * Called on activate.
+	 *
+	 * @internal
+	 *
+	 * @return void
+	 */
+	public function _a_loadDefaultSettings() {
+
+		App::s()->options->fillDifferencies();
+		App::s()->options->flush();
+
+	}
 
 	/**
 	 * Returns addresses from settings.
