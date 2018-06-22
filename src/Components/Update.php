@@ -6,7 +6,7 @@ namespace tmc\mm\src\Components;
  * Time: 21:49
  */
 
-use shellpress\v1_2_3\src\Shared\Components\IComponent;
+use shellpress\v1_2_4\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
 class Update extends IComponent {
