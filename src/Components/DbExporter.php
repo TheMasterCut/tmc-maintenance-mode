@@ -7,7 +7,7 @@ namespace tmc\mm\src\Components;
  * Time: 15:21
  */
 
-use shellpress\v1_2_4\src\Shared\Components\IComponent;
+use shellpress\v1_2_5\src\Shared\Components\IComponent;
 use wpdb;
 
 class DbExporter extends IComponent {

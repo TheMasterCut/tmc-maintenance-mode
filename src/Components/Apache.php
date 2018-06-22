@@ -6,7 +6,7 @@ namespace tmc\mm\src\Components;
  * Time: 18:10
  */
 
-use shellpress\v1_2_4\src\Shared\Components\IComponent;
+use shellpress\v1_2_5\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 
 class Apache extends IComponent {

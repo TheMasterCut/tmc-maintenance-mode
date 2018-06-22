@@ -6,7 +6,7 @@ namespace tmc\mm\src\Components;
  * Time: 19:50
  */
 
-use shellpress\v1_2_4\src\Shared\Components\IComponent;
+use shellpress\v1_2_5\src\Shared\Components\IComponent;
 use tmc\mm\src\App;
 use WP_Admin_Bar;
 
