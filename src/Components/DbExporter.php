@@ -23,7 +23,9 @@ class DbExporter extends IComponent {
 	 * @return void
 	 */
 	protected function onSetUp() {
-		// TODO: Implement onSetUp() method.
+
+
+
 	}
 
 	/**
@@ -71,34 +73,31 @@ class DbExporter extends IComponent {
 	 *
 	 * @param string $tableName
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function getTableDataDumpSql( $tableName ) {
 
 		global $wpdb;   /** @var wpdb $wpdb */
 
-//		$data = $wpdb->( "SELECT * FROM `$tableName`");
-//
-//		while( $row = $this->db->fetch_row($data) ){
-//			$row_values = array();
-//			foreach ($row as $value) {
-//				$row_values[] = $this->db->escape($value);
-//			}
-//			$insert->add_row( $row_values );
-//
-//			if ($insert->get_length() > self::INSERT_THRESHOLD) {
-//				// The insert got too big: write the SQL and create
-//				// new insert statement
-//				$this->dump_file->write($insert->get_sql() . $eol);
-//				$insert->reset();
-//			}
-//		}
-//
-//		$sql = $insert->get_sql();
-//		if ($sql) {
-//			$this->dump_file->write($insert->get_sql() . $eol);
-//		}
-//		$this->dump_file->write($eol . $eol);
+		$sqlStatements = array();
+
+		$results = $wpdb->get_results( "SELECT * FROM $tableName LIMIT 5", 'ARRAY_A' );
+
+		//  ----------------------------------------
+		//  Build INSERT statements
+		//  ----------------------------------------
+
+		$sqlDataRows = array();
+
+		foreach( $results as $row ){
+
+			$sqlDataRows[] = sprintf( '(%1$s)', implode( ',', $row ) );
+
+		}
+
+		$sqlStatements[] = "INSERT INTO $tableName VALUES " . implode( ',' . PHP_EOL, $sqlDataRows ) . ";";
+
+		return $sqlStatements;
 
 	}
 
