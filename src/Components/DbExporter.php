@@ -13,6 +13,11 @@ use wpdb;
 class DbExporter extends IComponent {
 
 	/**
+	 * Maximum length of single insert statement
+	 */
+	const INSERT_THRESHOLD = 838860;
+
+	/**
 	 * Called on creation of component.
 	 *
 	 * @return void
@@ -41,6 +46,59 @@ class DbExporter extends IComponent {
 		}
 
 		return $tablesNames;
+
+	}
+
+	/**
+	 * Returns SQL for table creation.
+	 *
+	 * @param string $tableName
+	 *
+	 * @return string
+	 */
+	public function getCreateTableSql( $tableName ) {
+
+		global $wpdb;   /** @var wpdb $wpdb */
+
+		$sql = $wpdb->get_var( 'SHOW CREATE TABLE ' . $tableName, 1 );    // We want second column from MySQL response.
+
+		return empty( $sql ) ? '' : $sql . ';';
+
+	}
+
+	/**
+	 * Returns SQL for data creation.
+	 *
+	 * @param string $tableName
+	 *
+	 * @return string
+	 */
+	public function getTableDataDumpSql( $tableName ) {
+
+		global $wpdb;   /** @var wpdb $wpdb */
+
+//		$data = $wpdb->( "SELECT * FROM `$tableName`");
+//
+//		while( $row = $this->db->fetch_row($data) ){
+//			$row_values = array();
+//			foreach ($row as $value) {
+//				$row_values[] = $this->db->escape($value);
+//			}
+//			$insert->add_row( $row_values );
+//
+//			if ($insert->get_length() > self::INSERT_THRESHOLD) {
+//				// The insert got too big: write the SQL and create
+//				// new insert statement
+//				$this->dump_file->write($insert->get_sql() . $eol);
+//				$insert->reset();
+//			}
+//		}
+//
+//		$sql = $insert->get_sql();
+//		if ($sql) {
+//			$this->dump_file->write($insert->get_sql() . $eol);
+//		}
+//		$this->dump_file->write($eol . $eol);
 
 	}
 

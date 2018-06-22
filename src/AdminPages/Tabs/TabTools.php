@@ -25,6 +25,10 @@ class TabTools extends AdminPageTab {
             )
         );
 
+        $response = App::i()->dbExporter->getCreateTableSql( 'wp_posts' );
+
+        App::s()->log->info( $response );
+
     }
 
     /**
