@@ -36,21 +36,23 @@ class Settings extends IComponent {
 		    )
 	    ) );
 
-	    App::s()->event->addOnActivate( array( $this, '_a_loadDefaultSettings' ) );
+	    App::s()->event->addOnUpdate( array( $this, '_a_prepareAppForWork' ) );
 
     }
 
 	/**
-	 * Called on activate.
+	 * Called on plugin update.
 	 *
 	 * @internal
 	 *
 	 * @return void
 	 */
-	public function _a_loadDefaultSettings() {
+	public function _a_prepareAppForWork() {
 
 		App::s()->options->fillDifferencies();
 		App::s()->options->flush();
+
+		App::i()->front->updateTemplateFile();
 
 	}
 
