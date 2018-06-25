@@ -37,13 +37,13 @@ class TabTools extends AdminPageTab {
         //  ----------------------------------------
 
         $this->pageFactory->addSettingSections(
-            array(
-            	'section_id'        =>  'dbExport',
-	            'page_slug'         =>  $this->pageSlug,
-	            'tab_slug'          =>  $this->tabSlug,
-	            'order'             =>  5,
-	            'title'             =>  __( 'Database export', 'tmc_mm' )
-            ),
+//            array(
+//            	'section_id'        =>  'dbExport',
+//	            'page_slug'         =>  $this->pageSlug,
+//	            'tab_slug'          =>  $this->tabSlug,
+//	            'order'             =>  5,
+//	            'title'             =>  __( 'Database export', 'tmc_mm' )
+//            ),
 	        array(
 		        'section_id'        =>  'multisite',
 		        'page_slug'         =>  $this->pageSlug,
@@ -57,30 +57,30 @@ class TabTools extends AdminPageTab {
         //  Fields
         //  ----------------------------------------
 
-	    $this->pageFactory->addSettingFields(
-	    	'dbExport',
-		    array(
-		    	'field_id'              =>  'tablesNames',
-			    'type'                  =>  'checkbox',
-			    'title'                 =>  __( 'Tables to export', 'tmc_mm' ),
-			    'label'                 =>  $this->getTablesNamesAsLabelForField(),
-			    'select_all_button'     =>  __( 'Select all', 'tmc_mm' ),
-			    'select_none_button'    =>  __( 'Select none', 'tmc_mm' ),
-			    'attributes'            =>  array(
-			    	'field'                 =>  array(
-			    		'style'                 =>  'max-height: 200px; overflow: auto;'
-				    )
-			    )
-		    ),
-		    array(
-				'field_id'              =>  'exportDatabase',
-			    'type'                  =>  'submit',
-			    'value'                 =>  __( 'Download tables', 'tmc_mm' ),
-			    'attributes'            =>  array(
-			    	'class'                 =>  'button-secondary'
-			    )
-		    )
-	    );
+//	    $this->pageFactory->addSettingFields(
+//	    	'dbExport',
+//		    array(
+//		    	'field_id'              =>  'tablesNames',
+//			    'type'                  =>  'checkbox',
+//			    'title'                 =>  __( 'Tables to export', 'tmc_mm' ),
+//			    'label'                 =>  $this->getTablesNamesAsLabelForField(),
+//			    'select_all_button'     =>  __( 'Select all', 'tmc_mm' ),
+//			    'select_none_button'    =>  __( 'Select none', 'tmc_mm' ),
+//			    'attributes'            =>  array(
+//			    	'field'                 =>  array(
+//			    		'style'                 =>  'max-height: 200px; overflow: auto;'
+//				    )
+//			    )
+//		    ),
+//		    array(
+//				'field_id'              =>  'exportDatabase',
+//			    'type'                  =>  'submit',
+//			    'value'                 =>  __( 'Download tables', 'tmc_mm' ),
+//			    'attributes'            =>  array(
+//			    	'class'                 =>  'button-secondary'
+//			    )
+//		    )
+//	    );
 
         $this->pageFactory->addSettingFields(
             'multisite',
